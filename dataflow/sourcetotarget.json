@@ -12,7 +12,19 @@
 					"name": "sourcesales"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "salestargettemp",
+						"type": "DatasetReference"
+					},
+					"name": "yearwisemonthlysales",
+					"rejectedDataLinkedService": {
+						"referenceName": "AzureBlobStorage1",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
 			"transformations": [
 				{
 					"name": "filtersalesabove2000"
@@ -40,7 +52,11 @@
 				"sourcesales filter(SALES>=2000) ~> filtersalesabove2000",
 				"filtersalesabove2000 aggregate(groupBy(YEAR = YEAR_ID,",
 				"          MONTH = MONTH_ID),",
-				"     TOTALSALES = sum(SALES)) ~> aggregateyearmonthbasis"
+				"     TOTALSALES = sum(SALES)) ~> aggregateyearmonthbasis",
+				"aggregateyearmonthbasis sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> yearwisemonthlysales"
 			]
 		}
 	}

@@ -1,0 +1,9 @@
+{
+	"name": "shashankdatafactory-2026",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d5ee4cf8-2510-4f10-8a57-084556d79273",
+		"tenantId": "6fdc4d1b-a3c1-4cb2-acac-71964d6635ad"
+	}
+}

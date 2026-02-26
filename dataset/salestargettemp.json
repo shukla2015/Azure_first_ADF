@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "filtered_sales_data",
 				"container": "sales-refined-data"
 			},
 			"columnDelimiter": ",",

@@ -55,6 +55,7 @@
 				"     TOTALSALES = sum(SALES)) ~> aggregateyearmonthbasis",
 				"aggregateyearmonthbasis sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['filtered_dataset.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> yearwisemonthlysales"
 			]

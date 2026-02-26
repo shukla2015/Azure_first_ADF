@@ -1,0 +1,41 @@
+{
+	"name": "sourcetotarget",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "salesourcetemp",
+						"type": "DatasetReference"
+					},
+					"name": "sourcesales"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "filtersalesabove2000"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ORDERNUMBER as short,",
+				"          QUANTITYORDERED as short,",
+				"          PRICEEACH as double,",
+				"          ORDERLINENUMBER as short,",
+				"          SALES as double,",
+				"          ORDERDATE as timestamp,",
+				"          STATUS as string,",
+				"          QTR_ID as short,",
+				"          MONTH_ID as short,",
+				"          YEAR_ID as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcesales",
+				"sourcesales filter(SALES>=2000) ~> filtersalesabove2000"
+			]
+		}
+	}
+}
